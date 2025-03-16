@@ -25,7 +25,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { FileUpload } from '@/components/file-upload';
 import { useRouter } from 'next/navigation';
-import { ModeToggle } from '../mode-toggle';
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -106,7 +105,7 @@ export const InitialModal = () => {
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className='bg-zinc-300/50 border-0 text-black focus-visible:ring-offset-0 autofill:bg-red-900'
+                        className='bg-zinc-300/50 border-0 text-black focus-visible:ring-offset-0 autofill:shadow-[inset_0_0_0px_1000px_rgb(233,233,235)]'
                         placeholder='Enter server name'
                         {...field}
                       />
