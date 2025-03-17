@@ -19,7 +19,12 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   if (value && fileType !== 'pdf') {
     return (
       <div className='relative h-20 w-20'>
-        <Image fill src={value} alt='Upload' className='rounded-full' />
+        <Image
+          fill
+          src={value}
+          alt='server-image-upload'
+          className='rounded-full'
+        />
         <button
           onClick={() => onChange('')}
           className='bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm'
@@ -34,6 +39,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   return (
     <UploadDropzone
       endpoint={endpoint}
+      uploadProgressGranularity='coarse'
       onClientUploadComplete={(res) => {
         onChange(res?.[0].ufsUrl);
       }}
