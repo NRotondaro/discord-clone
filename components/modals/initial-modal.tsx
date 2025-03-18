@@ -89,6 +89,7 @@ export const InitialModal = () => {
                           onChange={field.onChange}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -99,13 +100,16 @@ export const InitialModal = () => {
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-seconadry/70'>
+                    <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70'>
                       Server name
                     </FormLabel>
                     <FormControl>
                       <Input
+                        autoComplete='off'
                         disabled={isLoading}
-                        className='bg-zinc-300/50 border-0 text-black focus-visible:ring-offset-0 autofill:shadow-[inset_0_0_0px_1000px_rgb(233,233,235)]'
+                        // If autoComplete is turned on, to prevent bg-color changes, use:
+                        // autofill:shadow-[inset_0_0_0px_1000px_rgb(233,233,235)]
+                        className='bg-zinc-300/50 border-0 text-black focus-visible:ring-offset-0'
                         placeholder='Enter server name'
                         {...field}
                       />
