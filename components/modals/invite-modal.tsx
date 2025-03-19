@@ -1,6 +1,5 @@
 'use client';
 
-import { Check, Copy, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 
 import {
@@ -9,10 +8,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+
+import { Check, Copy, RefreshCw } from 'lucide-react';
+
 import { useModal } from '@/hooks/use-modal-store';
 import { Label } from '@/components/ui/label';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { useOrigin } from '@/hooks/use-origin';
 import axios from 'axios';
 
@@ -54,7 +56,10 @@ export const InviteModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className='bg-white text-black p-0 overflow-hidden'>
+      <DialogContent
+        className='bg-white text-black p-0 overflow-hidden'
+        aria-describedby='invite-friends'
+      >
         <DialogHeader className='pt-8 px-6'>
           <DialogTitle className='text-2xl text-center font-bold'>
             Invite Friends
@@ -66,6 +71,7 @@ export const InviteModal = () => {
           </Label>
           <div className='flex items-center mt-2 gap-x-2'>
             <Input
+              readOnly
               disabled={isLoading}
               className='bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0'
               value={inviteUrl}
