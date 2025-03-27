@@ -44,13 +44,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const handleNavigateSearch = ({
-    id,
-    type,
-  }: {
-    id: string;
-    type: 'channel' | 'member';
-  }) => {
+  const handleNavigateSearch = ({ id, type }: { id: string; type: 'channel' | 'member' }) => {
     setOpen(false);
 
     if (type === 'member') {
@@ -66,8 +60,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className='group p-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition'
-      >
+        className='group p-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition'>
         <Search className='w-4 h-4 text-zinc-500 dark:text-zinc-400' />
         <p className='font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition'>
           Search
@@ -87,10 +80,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
               <CommandGroup key={label} heading={label}>
                 {data?.map(({ id, icon, name }) => {
                   return (
-                    <CommandItem
-                      onSelect={() => handleNavigateSearch({ id, type })}
-                      key={id}
-                    >
+                    <CommandItem onSelect={() => handleNavigateSearch({ id, type })} key={id}>
                       {icon}
                       <span>{name}</span>
                     </CommandItem>

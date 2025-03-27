@@ -34,10 +34,7 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
     return redirect('/');
   }
 
-  const conversation = await getOrCreateConversation(
-    currentMember.id,
-    params.memberId
-  );
+  const conversation = await getOrCreateConversation(currentMember.id, params.memberId);
 
   if (!conversation) {
     return redirect(`/servers/${params.serverId}`);
@@ -45,8 +42,7 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
 
   const { memberOne, memberTwo } = conversation;
 
-  const otherMember =
-    memberOne.profileId === profile.id ? memberTwo : memberOne;
+  const otherMember = memberOne.profileId === profile.id ? memberTwo : memberOne;
 
   return (
     <div className='bg-white dark:bg-[#313338] flex flex-col h-full'>

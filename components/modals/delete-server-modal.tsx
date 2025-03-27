@@ -44,15 +44,11 @@ export const DeleteServerModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className='bg-white text-black p-0 overflow-hidden'>
         <DialogHeader className='pt-8 px-6'>
-          <DialogTitle className='text-2xl text-center font-bold'>
-            Delete Server
-          </DialogTitle>
+          <DialogTitle className='text-2xl text-center font-bold'>Delete Server</DialogTitle>
           <DialogDescription className='text-center text-zinc-500'>
             Are you sure you want to do this <br />
-            <span className='font-semibold text-indigo-500'>
-              {server?.name}
-            </span>{' '}
-            will be permanentyle deleted.
+            <span className='font-semibold text-indigo-500'>{server?.name}</span> will be
+            permanentyle deleted.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className='bg-gray-100 px-6 py-4'>
@@ -60,11 +56,7 @@ export const DeleteServerModal = () => {
             <Button disabled={isLoading} onClick={onClose} variant='ghost'>
               Cancel
             </Button>
-            <Button
-              disabled={isLoading}
-              onClick={handleDeleteServer}
-              variant='primary'
-            >
+            <Button disabled={isLoading} onClick={handleDeleteServer} variant='primary'>
               Confirm
             </Button>
           </div>

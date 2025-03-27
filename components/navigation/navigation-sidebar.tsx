@@ -34,20 +34,13 @@ export const NavigationSidebar = async () => {
       <ScrollArea className='flex-1 w-full'>
         {servers.map((server) => (
           <div key={server.id} className='mb-4'>
-            <NavigationItem
-              id={server.id}
-              name={server.name}
-              imageUrl={server.imageUrl}
-            />
+            <NavigationItem id={server.id} name={server.name} imageUrl={server.imageUrl} />
           </div>
         ))}
       </ScrollArea>
       <div className='pb-3 mt-auto flex items-center flex-col gap-y-4'>
         <ModeToggle />
-        <UserButton
-          afterSignOutUrl='/'
-          appearance={{ elements: { avatarBox: 'h-12 w-12' } }}
-        />
+        <UserButton afterSignOutUrl='/' appearance={{ elements: { avatarBox: 'h-12 w-12' } }} />
       </div>
     </div>
   );

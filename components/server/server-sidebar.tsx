@@ -25,9 +25,7 @@ const iconMap = {
 
 const roleIconMap = {
   [MemberRole.GUEST]: null,
-  [MemberRole.MODERATOR]: (
-    <ShieldCheck className='h-4 w-4 mr-2 text-indigo-500' />
-  ),
+  [MemberRole.MODERATOR]: <ShieldCheck className='h-4 w-4 mr-2 text-indigo-500' />,
   [MemberRole.ADMIN]: <ShieldAlert className='h-4 w-4 mr-2 text-rose-500' />,
 };
 
@@ -59,26 +57,16 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     },
   });
 
-  const textChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.TEXT
-  );
-  const audioChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.AUDIO
-  );
-  const videoChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.VIDEO
-  );
-  const members = server?.members.filter(
-    (member) => member.profileId !== profile.id
-  );
+  const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT);
+  const audioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO);
+  const videoChannels = server?.channels.filter((channel) => channel.type === ChannelType.VIDEO);
+  const members = server?.members.filter((member) => member.profileId !== profile.id);
 
   if (!server) {
     return redirect('/');
   }
 
-  const role = server.members.find(
-    (member) => member.profileId === profile.id
-  )?.role;
+  const role = server.members.find((member) => member.profileId === profile.id)?.role;
 
   return (
     <div className='flex flex-col h-full text-primary w-full bg-[#F2F3F5] dark:bg-[#2B2D31]'>
@@ -137,12 +125,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
             />
             <div className='py-0.5'>
               {textChannels.map((channel) => (
-                <ServerChannel
-                  key={channel.id}
-                  channel={channel}
-                  role={role}
-                  server={server}
-                />
+                <ServerChannel key={channel.id} channel={channel} role={role} server={server} />
               ))}
             </div>
           </div>
@@ -157,12 +140,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
             />
             <div className='py-0.5'>
               {audioChannels.map((channel) => (
-                <ServerChannel
-                  key={channel.id}
-                  channel={channel}
-                  role={role}
-                  server={server}
-                />
+                <ServerChannel key={channel.id} channel={channel} role={role} server={server} />
               ))}
             </div>
           </div>
@@ -177,12 +155,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
             />
             <div className='py-0.5'>
               {videoChannels.map((channel) => (
-                <ServerChannel
-                  key={channel.id}
-                  channel={channel}
-                  role={role}
-                  server={server}
-                />
+                <ServerChannel key={channel.id} channel={channel} role={role} server={server} />
               ))}
             </div>
           </div>
@@ -190,12 +163,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
         {!!members?.length && (
           <div className='py-0.5'>
             <div className='mb-2'>
-              <ServerSection
-                sectionType='members'
-                role={role}
-                label='Members'
-                server={server}
-              />
+              <ServerSection sectionType='members' role={role} label='Members' server={server} />
               {members.map((member) => (
                 <ServerMember key={member.id} member={member} server={server} />
               ))}

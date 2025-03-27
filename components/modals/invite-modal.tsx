@@ -2,12 +2,7 @@
 
 import { useState } from 'react';
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 import { Check, Copy, RefreshCw } from 'lucide-react';
 
@@ -42,9 +37,7 @@ export const InviteModal = () => {
   const onNew = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.patch(
-        `/api/servers/${server?.id}/invite-code`
-      );
+      const response = await axios.patch(`/api/servers/${server?.id}/invite-code`);
 
       onOpen('invitePeople', { server: response.data });
     } catch (error) {
@@ -58,12 +51,9 @@ export const InviteModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent
         className='bg-white text-black p-0 overflow-hidden'
-        aria-describedby='invite-friends'
-      >
+        aria-describedby='invite-friends'>
         <DialogHeader className='pt-8 px-6'>
-          <DialogTitle className='text-2xl text-center font-bold'>
-            Invite Friends
-          </DialogTitle>
+          <DialogTitle className='text-2xl text-center font-bold'>Invite Friends</DialogTitle>
         </DialogHeader>
         <div className='p-6'>
           <Label className='uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70'>
@@ -77,11 +67,7 @@ export const InviteModal = () => {
               value={inviteUrl}
             />
             <Button disabled={isLoading} onClick={onCopy} size='icon'>
-              {copied ? (
-                <Check className='w-4 h-4' />
-              ) : (
-                <Copy className='w-4 h-4' />
-              )}
+              {copied ? <Check className='w-4 h-4' /> : <Copy className='w-4 h-4' />}
             </Button>
           </div>
           <Button
@@ -89,8 +75,7 @@ export const InviteModal = () => {
             disabled={isLoading}
             variant='link'
             size='sm'
-            className='text-xs text-zinc-500 mt-4'
-          >
+            className='text-xs text-zinc-500 mt-4'>
             Generate a new link
             <RefreshCw className='w-4 h-4 ml-2' />
           </Button>
