@@ -40,33 +40,33 @@ export const ServerChannel = ({ channel, server, role }: ServerChannelProps) => 
     <button
       onClick={navigateToChannel}
       className={cn(
-        'group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1',
+        'group mb-1 flex w-full items-center gap-x-2 rounded-md px-2 py-2 transition hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50',
         params?.channelId === channel.id && 'bg-zinc-700/20 dark:bg-zinc-700',
       )}>
-      <Icon className='flex-shrink-0 w-5 h-5 text-zinc-500 dark:text-zinc-400' />
+      <Icon className='h-5 w-5 flex-shrink-0 text-zinc-500 dark:text-zinc-400' />
       <p
         className={cn(
-          'line-clamp-1 font-semibold text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition',
+          'line-clamp-1 text-sm font-semibold text-zinc-500 transition group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300',
           params?.channelId === channel.id &&
             'text-primary dark:text-zinc-200 dark:group-hover:text-white',
         )}>
         {channel.name}
       </p>
       {channel.name === 'general' && (
-        <Lock className='ml-auto w-4 h-4 text-zinc-500 dark:text-zinc-400' />
+        <Lock className='ml-auto h-4 w-4 text-zinc-500 dark:text-zinc-400' />
       )}
       {channel.name !== 'general' && role !== MemberRole.GUEST && (
         <div className='ml-auto flex items-center gap-x-2'>
           <ActionTooltip label='edit'>
             <Edit
               onClick={(e) => handleOpenModal(e, 'editChannel')}
-              className='hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition'
+              className='hidden h-4 w-4 text-zinc-500 transition hover:text-zinc-600 group-hover:block dark:text-zinc-400 dark:hover:text-zinc-300'
             />
           </ActionTooltip>
           <ActionTooltip label='delete'>
             <Trash
               onClick={(e) => handleOpenModal(e, 'deleteChannel')}
-              className='hidden group-hover:block w-4 h-4 text-rose-500 hover:text-rose-600 dark:text-rose-400 dark:hover:text-rose-300 transition'
+              className='hidden h-4 w-4 text-rose-500 transition hover:text-rose-600 group-hover:block dark:text-rose-400 dark:hover:text-rose-300'
             />
           </ActionTooltip>
         </div>

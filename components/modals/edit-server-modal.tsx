@@ -80,9 +80,9 @@ export const EditServerModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className='bg-white text-black p-0 overflow-hidden'>
-        <DialogHeader className='pt-8 px-6'>
-          <DialogTitle className='text-2xl text-center font-bold'>
+      <DialogContent className='overflow-hidden bg-white p-0 text-black'>
+        <DialogHeader className='px-6 pt-8'>
+          <DialogTitle className='text-center text-2xl font-bold'>
             Customize your server
           </DialogTitle>
           <DialogDescription className='text-center text-zinc-500'>
@@ -116,7 +116,7 @@ export const EditServerModal = () => {
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70'>
+                    <FormLabel className='text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70'>
                       Server name
                     </FormLabel>
                     <FormControl>
@@ -125,7 +125,7 @@ export const EditServerModal = () => {
                         disabled={isLoading}
                         // If autoComplete is turned on, to prevent bg-color changes, use:
                         // autofill:shadow-[inset_0_0_0px_1000px_rgb(233,233,235)]
-                        className='bg-zinc-300/50 border-0 text-black focus-visible:ring-offset-0'
+                        className='border-0 bg-zinc-300/50 text-black focus-visible:ring-offset-0'
                         placeholder='Enter server name'
                         {...field}
                       />

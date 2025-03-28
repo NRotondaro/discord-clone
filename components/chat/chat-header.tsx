@@ -13,11 +13,11 @@ interface ChatHeaderProps {
 
 export const ChatHeader = ({ serverId, name, type, imageUrl }: ChatHeaderProps) => {
   return (
-    <div className='text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2'>
+    <div className='text-md flex h-12 items-center border-b-2 border-neutral-200 px-3 font-semibold dark:border-neutral-800'>
       <MobileToggle serverId={serverId} />
-      {type === 'channel' && <Hash className='w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2' />}
+      {type === 'channel' && <Hash className='mr-2 h-5 w-5 text-zinc-500 dark:text-zinc-400' />}
       {type === 'conversation' && <UserAvatar src={imageUrl} className='mr-2' />}
-      <p className='font-semibold text-lg'>{name}</p>
+      <p className='text-lg font-semibold'>{name}</p>
       <div className='ml-auto flex items-center'>
         <SocketIndicator />
       </div>

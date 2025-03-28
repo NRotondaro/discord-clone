@@ -98,9 +98,9 @@ export const CreateChannelModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className='bg-white text-black p-0 overflow-hidden'>
-        <DialogHeader className='pt-8 px-6'>
-          <DialogTitle className='text-2xl text-center font-bold'>Create channel</DialogTitle>
+      <DialogContent className='overflow-hidden bg-white p-0 text-black'>
+        <DialogHeader className='px-6 pt-8'>
+          <DialogTitle className='text-center text-2xl font-bold'>Create channel</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
@@ -110,7 +110,7 @@ export const CreateChannelModal = () => {
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70'>
+                    <FormLabel className='text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70'>
                       Channel name
                     </FormLabel>
                     <FormControl>
@@ -119,7 +119,7 @@ export const CreateChannelModal = () => {
                         disabled={isLoading}
                         // If autoComplete is turned on, to prevent bg-color changes, use:
                         // autofill:shadow-[inset_0_0_0px_1000px_rgb(233,233,235)]
-                        className='bg-zinc-300/50 border-0 text-black focus-visible:ring-offset-0'
+                        className='border-0 bg-zinc-300/50 text-black focus-visible:ring-offset-0'
                         placeholder='Enter channel name'
                         {...field}
                       />
@@ -139,7 +139,7 @@ export const CreateChannelModal = () => {
                       onValueChange={field.onChange}
                       defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className='bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none'>
+                        <SelectTrigger className='border-0 bg-zinc-300/50 capitalize text-black outline-none ring-offset-0 focus:ring-0 focus:ring-offset-0'>
                           <SelectValue placeholder='Select a channel type' />
                         </SelectTrigger>
                       </FormControl>
