@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
 
   try {
     const profile = await currentProfilePages(req);
-    const { content, fileUrl } = req.body;
+    const { content, fileUrl, fileType } = req.body;
     const { serverId, channelId } = req.query;
 
     if (!profile) {
@@ -69,6 +69,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
       data: {
         content,
         fileUrl,
+        fileType,
         channelId: channelId as string,
         memberId: member.id,
       },

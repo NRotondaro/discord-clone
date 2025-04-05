@@ -14,15 +14,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { FileUpload } from '@/components/file-upload';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/hooks/use-modal-store';
 
 const formSchema = z.object({
-  fileUrl: z.string().min(1, {
-    message: 'Attachment is required.',
+  file: z.object({
+    fileUrl: z.string().min(1, {
+      message: 'Attachment is required.',
+    }),
+    fileType: z.string().min(1, {
+      message: 'File Type is required.',
+    }),
   }),
 });
 
@@ -36,7 +41,10 @@ export const MessageFileModal = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fileUrl: '',
+      file: {
+        fileUrl: '',
+        fileType: '',
+      },
     },
   });
 
@@ -53,7 +61,12 @@ export const MessageFileModal = () => {
         url: apiUrl || '',
         query,
       });
-      await axios.post(url, { ...values, content: values.fileUrl });
+      const { fileUrl, fileType } = values.file;
+      await axios.post(url, {
+        content: fileUrl,
+        fileUrl,
+        fileType,
+      });
 
       form.reset();
       router.refresh();
@@ -79,16 +92,23 @@ export const MessageFileModal = () => {
               <div className='flex items-center justify-center text-center'>
                 <FormField
                   control={form.control}
-                  name='fileUrl'
+                  name='file'
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <FileUpload
                           endpoint='messageFile'
-                          value={field.value}
-                          onChange={field.onChange}
+                          value={field.value.fileUrl}
+                          onChange={(fileUrl, fileType) => {
+                            field.onChange({
+                              ...field.value,
+                              fileUrl,
+                              fileType,
+                            });
+                          }}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
