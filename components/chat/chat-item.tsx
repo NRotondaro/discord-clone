@@ -86,8 +86,22 @@ export const ChatItem = ({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const isLoading = form.formState.isSubmitting;
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const url = qs.stringifyUrl({
+        url: `${socketUrl}/${id}`,
+        query: socketQuery,
+      });
+
+      await axios.patch(url, values);
+
+      form.reset();
+      setIsEditing(false);
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   useEffect(() => {
@@ -158,6 +172,7 @@ export const ChatItem = ({
                       <FormControl>
                         <div className='relative w-full'>
                           <Input
+                            disabled={isLoading}
                             className='border-0 border-none bg-zinc-200/90 p-2 text-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-zinc-700/75 dark:text-zinc-200'
                             placeholder='Edited message'
                             {...field}
@@ -167,12 +182,15 @@ export const ChatItem = ({
                     </FormItem>
                   )}
                 />
-                <Button size='sm' variant='primary'>
+                <Button onClick={() => setIsEditing(false)} size='sm' variant='ghost'>
+                  Cancel
+                </Button>
+                <Button disabled={isLoading} size='sm' variant='primary'>
                   Save
                 </Button>
               </form>
               <span className='mt-1 text-[10px] text-zinc-400'>
-                Press escapte to cancel, enter to save
+                Press ESC to cancel, enter to save
               </span>
             </Form>
           )}
