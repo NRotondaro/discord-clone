@@ -9,6 +9,7 @@ import { Member, MemberRole, Profile } from '@prisma/client';
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 
 import { ActionTooltip } from '@/components/action-tooltip';
 import { UserAvatar } from '@/components/user-avatar';
@@ -59,6 +60,16 @@ export const ChatItem = ({
 }: ChatItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const { onOpen } = useModal();
+  const params = useParams();
+  const router = useRouter();
+
+  const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return;
+    }
+
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+  };
 
   useEffect(() => {
     const handleKeyDown = (event: any) => {
@@ -114,13 +125,15 @@ export const ChatItem = ({
   return (
     <div className='group relative flex w-full items-center p-4 transition hover:bg-black/5'>
       <div className='group flex w-full items-start gap-x-2'>
-        <div className='cursor-pointer transition hover:drop-shadow-md'>
+        <div onClick={onMemberClick} className='cursor-pointer transition hover:drop-shadow-md'>
           <UserAvatar src={member.profile.imageUrl} />
         </div>
         <div className='flex w-full flex-col'>
           <div className='flex items-center gap-x-2'>
             <div className='flex items-center'>
-              <p className='cursor-pointer text-sm font-semibold hover:underline'>
+              <p
+                onClick={onMemberClick}
+                className='cursor-pointer text-sm font-semibold hover:underline'>
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>{roleIconMap[member.role]}</ActionTooltip>
@@ -175,7 +188,7 @@ export const ChatItem = ({
                           <Input
                             disabled={isLoading}
                             className='border-0 border-none bg-zinc-200/90 p-2 text-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-zinc-700/75 dark:text-zinc-200'
-                            placeholder='Edited message'
+                            placeholder='Edit the message'
                             {...field}
                           />
                         </div>
@@ -186,7 +199,7 @@ export const ChatItem = ({
                 <Button onClick={() => setIsEditing(false)} size='sm' variant='ghost'>
                   Cancel
                 </Button>
-                <Button disabled={isLoading} size='sm' variant='primary'>
+                <Button type='submit' disabled={isLoading} size='sm' variant='primary'>
                   Save
                 </Button>
               </form>
