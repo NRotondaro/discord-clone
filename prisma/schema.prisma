@@ -102,6 +102,7 @@ model DirectMessage {
   id             String       @id @default(uuid())
   content        String
   fileUrl        String?
+  fileType       String?
   memberId       String
   conversationId String
   deleted        Boolean      @default(false)
