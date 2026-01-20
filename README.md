@@ -29,6 +29,8 @@ npm install
 - Create your .env file based on the .env.example.
 - You'll need to generate publishable and private keys from [Clerk](https://dashboard.clerk.com/).
 - You'll need a database url, a good option is [Neondb](https://console.neon.tech/), create a cluster and get the database url.
+- You'll need a token from [UploadThing](https://uploadthing.com/)
+- You'll need livekit url and apikeys [livekit](https://livekit.io/)
 
 3. generate the prisma schema and push it
 
